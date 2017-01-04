@@ -1,0 +1,61 @@
+<component name="libraryTable">
+  <library name="edu.stanford.swrl:swrlapi:1.1.4" type="repository">
+    <properties maven-id="edu.stanford.swrl:swrlapi:1.1.4" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/swrlapi-1.1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/owlapi-osgidistribution-4.2.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-core-2.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-databind-2.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jackson-annotations-2.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/xz-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sesame-model-2.7.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sesame-util-2.7.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.21.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sesame-rio-api-2.7.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sesame-rio-languages-2.7.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sesame-rio-datatypes-2.7.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sesame-rio-binary-2.7.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sesame-rio-n3-2.7.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sesame-rio-turtle-2.7.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-io-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sesame-rio-nquads-2.7.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sesame-rio-ntriples-2.7.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sesame-rio-rdfjson-2.7.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sesame-rio-rdfxml-2.7.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sesame-rio-trix-2.7.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/sesame-rio-trig-2.7.16.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jsonld-java-sesame-0.5.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jsonld-java-0.5.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/httpclient-cache-4.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/httpclient-4.5.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/httpcore-4.4.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-codec-1.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jcl-over-slf4j-1.7.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-logging-1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/semargl-sesame-0.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/semargl-core-0.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/semargl-rdfa-0.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/semargl-rdf-0.6.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.apache.servicemix.bundles.javax-inject-1_2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.apache.servicemix.bundles.aopalliance-1.0_6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/trove4j-3.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guava-18.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guice-4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.inject-1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/aopalliance-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guice-assistedinject-4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guice-multibindings-4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jsr305-3.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/axis-1.4_2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-discovery-0.4_1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jep-2.4.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jama-1.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/checker-1.9.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/checker-qual-1.9.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jdk8-1.9.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/hamcrest-core-1.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

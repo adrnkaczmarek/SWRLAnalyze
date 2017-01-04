@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>SWRL Analyze</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../css/main.css" th:href="@{/css/main.css}"/>
+</head>
+<body data-offset="60">
+    <div class="container-fluid">
+        <section class="col-sm-3 well">
+            <h3>Filters</h3>
+            <ul class="filter-list">
+                <li>
+                    <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#classes">Classes</button>
+                    <div id="classes" class="dropdown collapse">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Choose class
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li th:each="class_name : ${classes}">
+                                <a href="#" th:text="${class_name}"></a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li>
+                    <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#return_type">Return type</button>
+                    <p id="return_type" class="collapse">lorem ipsum</p>
+                </li>
+            </ul>
+
+            <button id="filter_post" class="btn btn-info">Filter</button>
+        </section>
+
+        <section class="col-sm-9">
+            <h1>SWRL Rules</h1>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="rule : ${rules}">
+                    <span th:text="${rule}"/>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

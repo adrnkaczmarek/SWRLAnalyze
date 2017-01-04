@@ -1,0 +1,22 @@
+<component name="libraryTable">
+  <library name="net.sourceforge.owlapi:owlapi-api:4.1.0" type="repository">
+    <properties maven-id="net.sourceforge.owlapi:owlapi-api:4.1.0" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/owlapi-api-4.1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/xz-1.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/trove4j-3.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guava-18.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guice-4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javax.inject-1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/aopalliance-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guice-assistedinject-4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/guice-multibindings-4.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/jsr305-2.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/slf4j-api-1.7.10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/org.apache.commons.io-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-io-2.4.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

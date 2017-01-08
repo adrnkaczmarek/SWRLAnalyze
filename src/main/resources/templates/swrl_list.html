@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+</head>
+<body>
+    <div th:fragment="list (rules)">
+        <h1>SWRL Rules</h1>
+        <ul class="list-group">
+            <li class="list-group-item" th:each="rule : ${rules}">
+                <span th:text="${rule}"/>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

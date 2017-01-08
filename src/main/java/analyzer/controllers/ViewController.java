@@ -21,4 +21,13 @@ public class ViewController
         model.addAttribute("rules", rules);
         return "index";
     }
+
+    @RequestMapping("/filter")
+    public String filter(Model model, String filter)
+    {
+        /*TODO: Tu wczytaj przefiltrowane metody do zmiennej 'rules'*/
+        String[] rules = {"example"};
+        model.addAttribute("rules", rules);
+        return "swrl_list";
+    }
 }

@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../css/main.css" th:href="@{/css/main.css}"/>
 </head>
 <body data-offset="60">
-    <div class="container-fluid">
+    <div id="container" class="container-fluid">
         <section class="col-sm-3 well">
             <h3>Filters</h3>
             <ul class="filter-list">
@@ -31,19 +31,14 @@
             </ul>
 
             <button id="filter_post" class="btn btn-info">Filter</button>
+            <div class="loader"></div>
         </section>
 
-        <section class="col-sm-9">
-            <h1>SWRL Rules</h1>
-            <ul class="list-group">
-                <li class="list-group-item" th:each="rule : ${rules}">
-                    <span th:text="${rule}"/>
-                </li>
-            </ul>
-        </section>
+        <section id="swrl_list" class="col-sm-9" th:include="swrl_list :: list (rules = ${rules})"></section>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/main.js" th:src="@{js/main.js}"></script>
 </body>
 </html>

@@ -85,6 +85,67 @@ public class SWRLReader {
         return rules;
     }
 
+    public List<String> getFilteredRules(String className) {
+        List<String> filtered = new ArrayList<String>();
+        List<String> rulesNames = getRulesNamesForClass(className);
+        //System.out.println(rulesNames);
+
+        Set<SWRLAPIRule> set = ruleEngine.getSWRLRules();
+
+        for (SWRLAPIRule rule : set) {
+            String swrlRule = "";
+
+
+            for (SWRLAtom atom : rule.getBody()) {
+                if (checkForValues(atom.getPredicate().toString())) {
+                    //System.out.println(getValueFromPredicate(atom.getPredicate()));
+                    swrlRule += getValueFromPredicate(atom.getPredicate()) + "(";
+                    String swrlArguments = "";
+                    for (SWRLArgument argument : atom.getAllArguments()) {
+                        //System.out.println(getValueFromArgument(argument));
+                        //swrlRule += getValueFromArgument(argument) + " ";
+                        swrlArguments += getValueFromArgument(argument);
+                    }
+                    swrlArguments = insertCommasIntoString(swrlArguments);
+                    swrlRule += swrlArguments + ")";
+                }
+
+                swrlRule += " ^ ";
+            }
+
+            swrlRule = swrlRule.substring(0, swrlRule.length()-2);
+
+            swrlRule += " => ";
+
+            String headRule = "";
+            boolean containsRule = false;
+
+            for (SWRLAtom atom : rule.getHead()) {
+                SWRLPredicate predicate = atom.getPredicate();
+                if (checkForValues(predicate.toString())) {
+                    if (rulesNames.contains(getValueFromPredicate(predicate))) {
+                        //System.out.println(getValueFromPredicate(atom.getPredicate()));
+                        containsRule = true;
+                        swrlRule += getValueFromPredicate(atom.getPredicate()) + "(";
+                        String swrlArguments = "";
+                        for (SWRLArgument argument : atom.getAllArguments()) {
+                            //System.out.println(getValueFromArgument(argument));
+                            //swrlRule += getValueFromArgument(argument) + " ";
+                            swrlArguments += getValueFromArgument(argument);
+                        }
+                        swrlArguments = insertCommasIntoString(swrlArguments);
+                        swrlRule += swrlArguments + ")";
+
+                    }
+                }
+            }
+            if (containsRule)
+                filtered.add(swrlRule);
+        }
+        return filtered;
+    }
+
+
     public List<String> getRulesNamesForClass(String className) {
         String query = "tbox:opra(?v, " + className + ") -> sqwrl:select(?v)";
         List<String> rules = new ArrayList<String>();
@@ -94,7 +155,7 @@ public class SWRLReader {
             SQWRLResult result = queryEngine.runSQWRLQuery("q1", query);
 
             for (SQWRLResultValue rule : result.getColumn(0)) {
-                rules.add(rule.toString());
+                rules.add(rule.toString().substring(1));
             }
 
         } catch (SWRLParseException e) {
@@ -105,6 +166,8 @@ public class SWRLReader {
 
         return rules;
     }
+
+
 
     private boolean checkForValues(String s) {
         String v1 = "#";
@@ -157,16 +220,15 @@ public class SWRLReader {
     }
 
 */
-    public List<String> getClasses()
-    {
-        Set<OWLClass> classes = ontology.getClassesInSignature();
-        List<String> classes_list = new ArrayList<>();
+    public List<String> getClasses() {
+        List<String> classes = new ArrayList<String>();
+        Set<OWLClass> owlClasses = ontology.getClassesInSignature();
 
-        for(OWLClass owl_class : classes)
-        {
-            classes_list.add(owl_class.toString());
-        }
+        for (OWLClass owlClass : owlClasses)
+            if(checkForValues(owlClass.toString())) {
+                classes.add(getValueSubstring(owlClass.toString()));
+            }
 
-        return classes_list;
+        return classes;
     }
 }

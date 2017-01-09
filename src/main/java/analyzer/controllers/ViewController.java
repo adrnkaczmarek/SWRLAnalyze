@@ -17,7 +17,7 @@ public class ViewController
     public String index(Model model)
     {
         reader = new SWRLReader(
-                "C:\\Users\\adrn.kaczmarek\\IdeaProjects\\SWRLAnalyze\\src\\main\\resources\\family.xml");
+                "/Users/krzysztof/IdeaProjects/SWRLAnalyzer/src/main/resources/family.xml");
         String[] rules = reader.getRules().toArray(new String[0]);
         List<String> classes_list = reader.getClasses();
         classes_list.add(0, "None");

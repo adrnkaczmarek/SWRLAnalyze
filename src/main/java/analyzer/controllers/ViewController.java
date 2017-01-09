@@ -14,7 +14,7 @@ public class ViewController
     public String index(Model model)
     {
         reader = new SWRLReader(
-                "C:\\Users\\adrn.kaczmarek\\IdeaProjects\\SWRLAnalyze\\src\\main\\resources\\family.xml");
+                "/Users/krzysztof/IdeaProjects/SWRLAnalyzer/src/main/resources/family.xml");
         String[] rules = reader.getRules().toArray(new String[0]);
         String[] classes = reader.getClasses().toArray(new String[0]);
         model.addAttribute("classes", classes);
@@ -26,7 +26,8 @@ public class ViewController
     public String filter(Model model, String filter)
     {
         /*TODO: Tu wczytaj przefiltrowane metody do zmiennej 'rules'*/
-        String[] rules = {"example"};
+        System.out.println("Filtr: " + filter);
+        String[] rules = reader.getFilteredRules(filter).toArray(new String[0]);
         model.addAttribute("rules", rules);
         return "swrl_list";
     }

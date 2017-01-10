@@ -33,8 +33,7 @@ public class ViewController
     }
 
     @RequestMapping("/filter")
-    public String filter(Model model,  @RequestParam("filter") String filter)
-    {
+    public String filter(Model model,  @RequestParam("filter") String filter) {
         SWRLReader reader = new SWRLReader(
                 "/Users/krzysztof/IdeaProjects/SWRLAnalyzer/src/main/resources/family.xml");
 
@@ -51,6 +50,35 @@ public class ViewController
             }
             rules = rulesTmp.toArray(new String[0]);
         }
+
+        model.addAttribute("rules", rules);
+        return "swrl_list";
+    }
+
+    @RequestMapping("/filterFunctional")
+    public String filterFunctional(Model model) {
+        SWRLReader reader = new SWRLReader(
+                "/Users/krzysztof/IdeaProjects/SWRLAnalyzer/src/main/resources/family.xml");
+        String[] rules =  {"example"};
+
+        List<String> rulesNames = reader.getFunctionalObjectProperty();
+        /*List<String> rulesTmp = new ArrayList<String>();
+        for (String rule : rulesNames) {
+            rulesTmp.add(rulesMap.get(rule));
+        }*/
+        rules = rulesNames.toArray(new String[0]);
+
+        model.addAttribute("rules", rules);
+        return "swrl_list";
+    }
+
+    @RequestMapping("/filterSymmetric")
+    public String filterSymmetric(Model model) {
+        SWRLReader reader = new SWRLReader(
+                "/Users/krzysztof/IdeaProjects/SWRLAnalyzer/src/main/resources/family.xml");
+        String[] rules =  {"example"};
+
+        rules = reader.getSymmetricObjectProperty().toArray(new String[0]);
 
         model.addAttribute("rules", rules);
         return "swrl_list";

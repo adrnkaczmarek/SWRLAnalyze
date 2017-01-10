@@ -26,15 +26,45 @@
                     </div>
                 </li>
                 <li>
-                    <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#return_type">Functional object</button>
+                    <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#return_type">Functional object property</button>
                     <div id="return_type" class="dropdown collapse">
                         <button id="filter_functional_post" class="btn btn-info">Filter</button>
                     </div>
                 </li>
                 <li>
-                    <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#return_symmetric">Symmetric object</button>
+                    <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#return_symmetric">Symmetric object property</button>
                     <div id="return_symmetric" class="dropdown collapse">
                         <button id="filter_symmetric_post" class="btn btn-info">Filter</button>
+                    </div>
+                </li>
+                <li>
+                    <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#return_subof">Sub property of other property</button>
+                    <div id="return_subof" class="dropdown collapse">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                            Choose rule
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li th:each="ruleName : ${rulesNames}">
+                                <a href="#" th:text="${ruleName}"></a>
+                            </li>
+                        </ul>
+                        <button id="filter_as_subof_post" class="btn btn-info">Filter</button>
+                    </div>
+                </li>
+                <li>
+                    <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#return_inverse">Inverse object property</button>
+                    <div id="return_inverse" class="dropdown collapse">
+                        <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">
+                            Choose rule
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li th:each="ruleName : ${rulesNames}">
+                                <a href="#" th:text="${ruleName}"></a>
+                            </li>
+                        </ul>
+                        <button id="filter_as_inverse_post" class="btn btn-info">Filter</button>
                     </div>
                 </li>
             </ul>

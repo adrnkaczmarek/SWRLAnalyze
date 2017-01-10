@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d2a9125e-15bc-4393-ad37-f994372b1c13" name="Default" comment="Style update">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/jfact-4.0.0.jar" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jfact_4_0_0.xml" />
+    <list default="true" id="d2a9125e-15bc-4393-ad37-f994372b1c13" name="Default" comment="Added two extra filtering methods">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SWRLAnalyze.iml" afterPath="$PROJECT_DIR$/SWRLAnalyze.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/analyzer/controllers/ViewController.java" afterPath="$PROJECT_DIR$/src/main/java/analyzer/controllers/ViewController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/analyzer/utils/SWRLReader.java" afterPath="$PROJECT_DIR$/src/main/java/analyzer/utils/SWRLReader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/js/main.js" afterPath="$PROJECT_DIR$/src/main/resources/js/main.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/templates/index.html" afterPath="$PROJECT_DIR$/src/main/resources/templates/index.html" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -27,12 +26,24 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="family.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="family.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/resources/family.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="102">
-              <caret line="414" column="45" lean-forward="true" selection-start-line="414" selection-start-column="45" selection-end-line="414" selection-end-column="45" />
+            <state relative-caret-position="236">
+              <caret line="393" column="28" lean-forward="false" selection-start-line="393" selection-start-column="28" selection-end-line="393" selection-end-column="28" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ViewController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/controllers/ViewController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="397">
+              <caret line="86" column="34" lean-forward="false" selection-start-line="86" selection-start-column="34" selection-end-line="86" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -40,8 +51,8 @@
       <file leaf-file-name="SWRLReader.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/utils/SWRLReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="129" column="29" lean-forward="false" selection-start-line="129" selection-start-column="29" selection-end-line="129" selection-end-column="29" />
+            <state relative-caret-position="176">
+              <caret line="164" column="34" lean-forward="false" selection-start-line="164" selection-start-column="34" selection-end-line="164" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#getRules#0;class#SWRLReader#0" expanded="false" />
@@ -51,21 +62,32 @@
                 <element signature="method#checkForValues#0;class#SWRLReader#0" expanded="false" />
                 <element signature="method#checkForValues#1;class#SWRLReader#0" expanded="false" />
                 <element signature="method#getValueFromArgument#0;class#SWRLReader#0" expanded="false" />
-                <element signature="e#6542#6543#0" expanded="true" />
-                <element signature="e#6612#6613#0" expanded="true" />
+                <element signature="e#6953#6954#0" expanded="true" />
+                <element signature="e#7023#7024#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ViewController.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/controllers/ViewController.java">
+      <file leaf-file-name="main.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
+            <state relative-caret-position="136">
+              <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <marker date="1484091469947" expanded="true" signature="665:1009" ph="{...}" />
+                <marker date="1484091469947" expanded="true" signature="1063:1406" ph="{...}" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="74">
+              <caret line="54" column="10" lean-forward="false" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -91,6 +113,7 @@
       <find>hasb</find>
       <find>hass</find>
       <find>hassister</find>
+      <find>invers</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -119,11 +142,11 @@
         <option value="$PROJECT_DIR$/src/main/java/analyzer/Application.java" />
         <option value="$PROJECT_DIR$/src/main/resources/main.js" />
         <option value="$PROJECT_DIR$/src/main/resources/templates/swrl_list.html" />
-        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/src/main/resources/css/main.css" />
+        <option value="$PROJECT_DIR$/src/main/java/analyzer/controllers/ViewController.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/templates/index.html" />
         <option value="$PROJECT_DIR$/src/main/resources/js/main.js" />
         <option value="$PROJECT_DIR$/src/main/java/analyzer/utils/SWRLReader.java" />
-        <option value="$PROJECT_DIR$/src/main/java/analyzer/controllers/ViewController.java" />
       </list>
     </option>
   </component>
@@ -257,6 +280,70 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="js" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SWRLAnalyze" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SWRLAnalyze" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SWRLAnalyze" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SWRLAnalyze" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="analyzer" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controllers" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -749,7 +836,7 @@
       <workItem from="1483890584020" duration="508000" />
       <workItem from="1483894418818" duration="15028000" />
       <workItem from="1483982142724" duration="2322000" />
-      <workItem from="1484084121937" duration="2382000" />
+      <workItem from="1484084121937" duration="6093000" />
     </task>
     <task id="LOCAL-00001" summary="Added filtering actions">
       <created>1483913898430</created>
@@ -807,11 +894,18 @@
       <option name="project" value="LOCAL" />
       <updated>1484083345617</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fixed filtering by class">
+      <created>1484088418774</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1484088418774</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36790000" />
+    <option name="totallyTimeSpent" value="40501000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -827,7 +921,7 @@
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15959005" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20278184" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -857,7 +951,8 @@
     <MESSAGE value="Filtr functional i symmetric" />
     <MESSAGE value="Filter fix." />
     <MESSAGE value="Style update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Style update" />
+    <MESSAGE value="Fixed filtering by class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed filtering by class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -883,8 +978,8 @@
             <element signature="method#checkForValues#0;class#SWRLReader#0" expanded="false" />
             <element signature="method#checkForValues#1;class#SWRLReader#0" expanded="false" />
             <element signature="method#getValueFromArgument#0;class#SWRLReader#0" expanded="false" />
-            <element signature="e#6542#6543#0" expanded="true" />
-            <element signature="e#6612#6613#0" expanded="true" />
+            <element signature="e#6953#6954#0" expanded="true" />
+            <element signature="e#7023#7024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -956,8 +1051,8 @@
             <element signature="method#checkForValues#0;class#SWRLReader#0" expanded="false" />
             <element signature="method#checkForValues#1;class#SWRLReader#0" expanded="false" />
             <element signature="method#getValueFromArgument#0;class#SWRLReader#0" expanded="false" />
-            <element signature="e#6542#6543#0" expanded="true" />
-            <element signature="e#6612#6613#0" expanded="true" />
+            <element signature="e#6953#6954#0" expanded="true" />
+            <element signature="e#7023#7024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1087,8 +1182,8 @@
             <element signature="method#checkForValues#0;class#SWRLReader#0" expanded="false" />
             <element signature="method#checkForValues#1;class#SWRLReader#0" expanded="false" />
             <element signature="method#getValueFromArgument#0;class#SWRLReader#0" expanded="false" />
-            <element signature="e#6542#6543#0" expanded="true" />
-            <element signature="e#6612#6613#0" expanded="true" />
+            <element signature="e#6953#6954#0" expanded="true" />
+            <element signature="e#7023#7024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1133,8 +1228,8 @@
             <element signature="method#checkForValues#0;class#SWRLReader#0" expanded="false" />
             <element signature="method#checkForValues#1;class#SWRLReader#0" expanded="false" />
             <element signature="method#getValueFromArgument#0;class#SWRLReader#0" expanded="false" />
-            <element signature="e#6542#6543#0" expanded="true" />
-            <element signature="e#6612#6613#0" expanded="true" />
+            <element signature="e#6953#6954#0" expanded="true" />
+            <element signature="e#7023#7024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1179,8 +1274,8 @@
             <element signature="method#checkForValues#0;class#SWRLReader#0" expanded="false" />
             <element signature="method#checkForValues#1;class#SWRLReader#0" expanded="false" />
             <element signature="method#getValueFromArgument#0;class#SWRLReader#0" expanded="false" />
-            <element signature="e#6542#6543#0" expanded="true" />
-            <element signature="e#6612#6613#0" expanded="true" />
+            <element signature="e#6953#6954#0" expanded="true" />
+            <element signature="e#7023#7024#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1236,22 +1331,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="24" selection-end-line="10" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/js/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/css/main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
@@ -1260,10 +1339,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/utils/SWRLReader.java">
+    <entry file="file://$PROJECT_DIR$/src/main/resources/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="74">
+          <caret line="54" column="10" lean-forward="false" selection-start-line="54" selection-start-column="10" selection-end-line="54" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/controllers/ViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="397">
+          <caret line="86" column="34" lean-forward="false" selection-start-line="86" selection-start-column="34" selection-end-line="86" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
-          <caret line="129" column="29" lean-forward="false" selection-start-line="129" selection-start-column="29" selection-end-line="129" selection-end-column="29" />
+          <caret line="26" column="17" lean-forward="false" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+          <folding>
+            <marker date="1484091469947" expanded="true" signature="665:1009" ph="{...}" />
+            <marker date="1484091469947" expanded="true" signature="1063:1406" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/utils/SWRLReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="164" column="34" lean-forward="false" selection-start-line="164" selection-start-column="34" selection-end-line="164" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#getRules#0;class#SWRLReader#0" expanded="false" />
@@ -1273,27 +1381,17 @@
             <element signature="method#checkForValues#0;class#SWRLReader#0" expanded="false" />
             <element signature="method#checkForValues#1;class#SWRLReader#0" expanded="false" />
             <element signature="method#getValueFromArgument#0;class#SWRLReader#0" expanded="false" />
-            <element signature="e#6542#6543#0" expanded="true" />
-            <element signature="e#6612#6613#0" expanded="true" />
+            <element signature="e#6953#6954#0" expanded="true" />
+            <element signature="e#7023#7024#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/family.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="414" column="45" lean-forward="true" selection-start-line="414" selection-start-column="45" selection-end-line="414" selection-end-column="45" />
+        <state relative-caret-position="236">
+          <caret line="393" column="28" lean-forward="false" selection-start-line="393" selection-start-column="28" selection-end-line="393" selection-end-column="28" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/analyzer/controllers/ViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="47" column="0" lean-forward="false" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>

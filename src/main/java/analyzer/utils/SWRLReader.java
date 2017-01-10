@@ -148,13 +148,28 @@ public class SWRLReader
         return ruleNames;
     }
 
-    public List<String> getFunctionalObjectProperty() {
+    public List<String> getFunctionalObjectProperty()
+    {
         String query = "tbox:fopa(?v) -> sqwrl:select(?v)";
         return execute(query);
     }
 
-    public List<String> getSymmetricObjectProperty() {
+    public List<String> getSymmetricObjectProperty()
+    {
         String query = "rbox:spa(?v) -> sqwrl:select(?v)";
+        return execute(query);
+    }
+
+    public List<String> getSubOfObjectProperty(String rule)
+    {
+        String query = "rbox:sopa(" + rule + ", ?v) -> sqwrl:select(?v)";
+        return execute(query);
+    }
+
+    public List<String> getInverseObjectProperty(String rule)
+    {
+        //TODO: zamiana miejscami argumentów
+        String query = "rbox:iopa(?v, " + rule + ") -> sqwrl:select(?v)";
         return execute(query);
     }
 

@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -23,11 +22,13 @@ public class ViewController
         SWRLReader reader = new SWRLReader(filePath);
         rulesMap = reader.getRules();
         String[] rules = rulesMap.values().toArray(new String[0]);
+        String[] rulesNames = rulesMap.keySet().toArray(new String[0]);
         List<String> classes_list = reader.getClasses();
         classes_list.add(0, "None");
         String[] classes = classes_list.toArray(new String[0]);
         model.addAttribute("classes", classes);
         model.addAttribute("rules", rules);
+        model.addAttribute("rulesNames", rulesNames);
 
         return "index";
     }
@@ -44,14 +45,7 @@ public class ViewController
         }
         else
         {
-            List<String> rulesNames = reader.getRulesNamesForClass(filter);
-            List<String> rulesTmp = new ArrayList<>();
-
-            for (String rule : rulesNames)
-            {
-                rulesTmp.add(rulesMap.get(rule));
-            }
-            rules = rulesTmp.toArray(new String[0]);
+            rules = getRulesFromMap(reader.getRulesNamesForClass(filter));
         }
 
         model.addAttribute("rules", rules);
@@ -59,40 +53,53 @@ public class ViewController
     }
 
     @RequestMapping("/filterFunctional")
-    public String filterFunctional(Model model) {
+    public String filterAsFunctionalProperty(Model model)
+    {
         SWRLReader reader = new SWRLReader(filePath);
-        String[] rules;
-
-        List<String> rulesNames = reader.getFunctionalObjectProperty();
-        List<String> rulesTmp = new ArrayList<>();
-        for (String rule : rulesNames) {
-            if (rulesMap.containsKey(rule))
-                rulesTmp.add(rulesMap.get(rule));
-            else
-                rulesTmp.add(rule + "()");
-        }
-        rules = rulesTmp.toArray(new String[0]);
-
+        String[] rules = getRulesFromMap(reader.getFunctionalObjectProperty());
         model.addAttribute("rules", rules);
         return "swrl_list";
     }
 
     @RequestMapping("/filterSymmetric")
-    public String filterSymmetric(Model model) {
+    public String filterAsSymmetricProperty(Model model)
+    {
         SWRLReader reader = new SWRLReader(filePath);
-        String[] rules;
+        String[] rules = getRulesFromMap(reader.getSymmetricObjectProperty());
+        model.addAttribute("rules", rules);
+        return "swrl_list";
+    }
 
-        List<String> rulesNames = reader.getSymmetricObjectProperty();
+    @RequestMapping("/filterAsSubOfProperty")
+    public String filterAsSubOfProperty(Model model, @RequestParam("rule") String rule)
+    {
+        SWRLReader reader = new SWRLReader(filePath);
+        String[] rules = getRulesFromMap(reader.getSubOfObjectProperty(rule));
+        model.addAttribute("rules", rules);
+        return "swrl_list";
+    }
+
+    @RequestMapping("/filterAsInverseProperty")
+    public String filterAsInverseProperty(Model model, @RequestParam("rule") String rule)
+    {
+        SWRLReader reader = new SWRLReader(filePath);
+        String[] rules = getRulesFromMap(reader.getInverseObjectProperty(rule));
+        model.addAttribute("rules", rules);
+        return "swrl_list";
+    }
+
+    private String[] getRulesFromMap(List<String> rulesNames)
+    {
         List<String> rulesTmp = new ArrayList<>();
-        for (String rule : rulesNames) {
+
+        for (String rule : rulesNames)
+        {
             if (rulesMap.containsKey(rule))
                 rulesTmp.add(rulesMap.get(rule));
             else
                 rulesTmp.add(rule + "()");
         }
-        rules = rulesTmp.toArray(new String[0]);
 
-        model.addAttribute("rules", rules);
-        return "swrl_list";
+        return rulesTmp.toArray(new String[0]);
     }
 }

@@ -13,14 +13,14 @@ import java.util.Map;
 @Controller
 public class ViewController
 {
+    private String filePath = "/Users/krzysztof/IdeaProjects/SWRLAnalyzer/src/main/resources/family.xml";
     private Map<String, String> rulesMap;
 
 
     @RequestMapping("/index")
     public String index(Model model)
     {
-        SWRLReader reader = new SWRLReader(
-                "/Users/krzysztof/IdeaProjects/SWRLAnalyzer/src/main/resources/family.xml");
+        SWRLReader reader = new SWRLReader(filePath);
         rulesMap = reader.getRules();
         String[] rules = rulesMap.values().toArray(new String[0]);
         List<String> classes_list = reader.getClasses();
@@ -34,8 +34,7 @@ public class ViewController
 
     @RequestMapping("/filter")
     public String filter(Model model,  @RequestParam("filter") String filter) {
-        SWRLReader reader = new SWRLReader(
-                "/Users/krzysztof/IdeaProjects/SWRLAnalyzer/src/main/resources/family.xml");
+        SWRLReader reader = new SWRLReader(filePath);
 
         String[] rules = {"example"};
 
@@ -57,16 +56,18 @@ public class ViewController
 
     @RequestMapping("/filterFunctional")
     public String filterFunctional(Model model) {
-        SWRLReader reader = new SWRLReader(
-                "/Users/krzysztof/IdeaProjects/SWRLAnalyzer/src/main/resources/family.xml");
+        SWRLReader reader = new SWRLReader(filePath);
         String[] rules =  {"example"};
 
         List<String> rulesNames = reader.getFunctionalObjectProperty();
-        /*List<String> rulesTmp = new ArrayList<String>();
+        List<String> rulesTmp = new ArrayList<String>();
         for (String rule : rulesNames) {
-            rulesTmp.add(rulesMap.get(rule));
-        }*/
-        rules = rulesNames.toArray(new String[0]);
+            if (rulesMap.containsKey(rule))
+                rulesTmp.add(rulesMap.get(rule));
+            else
+                rulesTmp.add(rule + "()");
+        }
+        rules = rulesTmp.toArray(new String[0]);
 
         model.addAttribute("rules", rules);
         return "swrl_list";
@@ -74,11 +75,18 @@ public class ViewController
 
     @RequestMapping("/filterSymmetric")
     public String filterSymmetric(Model model) {
-        SWRLReader reader = new SWRLReader(
-                "/Users/krzysztof/IdeaProjects/SWRLAnalyzer/src/main/resources/family.xml");
+        SWRLReader reader = new SWRLReader(filePath);
         String[] rules =  {"example"};
 
-        rules = reader.getSymmetricObjectProperty().toArray(new String[0]);
+        List<String> rulesNames = reader.getSymmetricObjectProperty();
+        List<String> rulesTmp = new ArrayList<String>();
+        for (String rule : rulesNames) {
+            if (rulesMap.containsKey(rule))
+                rulesTmp.add(rulesMap.get(rule));
+            else
+                rulesTmp.add(rule + "()");
+        }
+        rules = rulesTmp.toArray(new String[0]);
 
         model.addAttribute("rules", rules);
         return "swrl_list";

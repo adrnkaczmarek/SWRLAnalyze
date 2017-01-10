@@ -22,15 +22,22 @@
                                 <a href="#" th:text="${class_name}"></a>
                             </li>
                         </ul>
+                        <button id="filter_post" class="btn btn-info">Filter</button>
                     </div>
                 </li>
                 <li>
-                    <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#return_type">Return type</button>
-                    <p id="return_type" class="collapse">lorem ipsum</p>
+                    <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#return_type">Functional object</button>
+                    <div id="return_type" class="dropdown collapse">
+                        <button id="filter_functional_post" class="btn btn-info">Filter</button>
+                    </div>
+                </li>
+                <li>
+                    <button class="btn btn-primary btn-block" data-toggle="collapse" data-target="#return_symmetric">Symmetric object</button>
+                    <div id="return_symmetric" class="dropdown collapse">
+                        <button id="filter_symmetric_post" class="btn btn-info">Filter</button>
+                    </div>
                 </li>
             </ul>
-
-            <button id="filter_post" class="btn btn-info">Filter</button>
             <div class="loader"></div>
         </section>
 

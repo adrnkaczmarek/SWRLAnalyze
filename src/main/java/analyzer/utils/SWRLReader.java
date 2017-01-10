@@ -107,7 +107,15 @@ public class SWRLReader {
         return rules;
     }
 
+    public List<String> getFunctionalObjectProperty() {
+        String query = "tbox:fopa(?v) -> sqwrl:select(?v)";
+        return execute(query);
+    }
 
+    public List<String> getSymmetricObjectProperty() {
+        String query = "rbox:spa(?v) -> sqwrl:select(?v)";
+        return execute(query);
+    }
 
     private boolean checkForValues(SWRLPredicate predicate) {
         String s = predicate.toString();
@@ -146,5 +154,25 @@ public class SWRLReader {
         s = s.substring(0, s.length()-1);
 
         return s;
+    }
+
+    private List<String> execute(String query) {
+        List<String> rules = new ArrayList<String>();
+
+        try {
+            SQWRLQueryEngine queryEngine = SWRLAPIFactory.createSQWRLQueryEngine(ontology);
+            SQWRLResult result = queryEngine.runSQWRLQuery("q1", query);
+
+            for (SQWRLResultValue rule : result.getColumn(0)) {
+                rules.add(rule.toString().substring(1));
+            }
+
+        } catch (SWRLParseException e) {
+            e.printStackTrace();
+        } catch (SQWRLException e) {
+            e.printStackTrace();
+        }
+
+        return rules;
     }
 }

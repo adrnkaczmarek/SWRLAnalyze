@@ -74,68 +74,17 @@ public class SWRLReader {
         return rules;
     }
 
-    /*public List<String> getFilteredRules(String className) {
-        List<String> filtered = new ArrayList<String>();
-        List<String> rulesNames = getRulesNamesForClass(className);
-        //System.out.println(rulesNames);
+    public List<String> getClasses() {
+        List<String> classes = new ArrayList<String>();
+        Set<OWLClass> owlClasses = ontology.getClassesInSignature();
 
-        Set<SWRLAPIRule> set = ruleEngine.getSWRLRules();
-
-        for (SWRLAPIRule rule : set) {
-            String swrlRule = "";
-
-
-            for (SWRLAtom atom : rule.getBody()) {
-                if (checkForValues(atom.getPredicate().toString())) {
-                    //System.out.println(getValueFromPredicate(atom.getPredicate()));
-                    swrlRule += getValueFromPredicate(atom.getPredicate()) + "(";
-                    String swrlArguments = "";
-                    for (SWRLArgument argument : atom.getAllArguments()) {
-                        //System.out.println(getValueFromArgument(argument));
-                        //swrlRule += getValueFromArgument(argument) + " ";
-                        swrlArguments += getValueFromArgument(argument);
-                    }
-                    swrlArguments = insertCommasIntoString(swrlArguments);
-                    swrlRule += swrlArguments + ")";
-                }
-
-                swrlRule += " ^ ";
+        for (OWLClass owlClass : owlClasses)
+            if(checkForValues(owlClass)) {
+                classes.add(getValueSubstring(owlClass.toString()));
             }
 
-            swrlRule = swrlRule.substring(0, swrlRule.length()-2);
-
-            swrlRule += " => ";
-
-            String headRule = "";
-            boolean containsRule = false;
-
-            for (SWRLAtom atom : rule.getHead()) {
-                SWRLPredicate predicate = atom.getPredicate();
-                if (checkForValues(predicate.toString())) {
-                    System.out.println(rulesNames.contains(getValueFromPredicate(predicate)));
-                    if (rulesNames.contains(getValueFromPredicate(predicate))) {
-                        //System.out.println(getValueFromPredicate(atom.getPredicate()));
-                        containsRule = true;
-                        swrlRule += getValueFromPredicate(atom.getPredicate()) + "(";
-                        String swrlArguments = "";
-                        for (SWRLArgument argument : atom.getAllArguments()) {
-                            //System.out.println(getValueFromArgument(argument));
-                            //swrlRule += getValueFromArgument(argument) + " ";
-                            swrlArguments += getValueFromArgument(argument);
-                        }
-                        swrlArguments = insertCommasIntoString(swrlArguments);
-                        swrlRule += swrlArguments + ")";
-
-                    }
-                }
-                //System.out.println(swrlRule);
-            }
-            if (containsRule)
-                filtered.add(swrlRule);
-        }
-        return filtered;
+        return classes;
     }
-    */
 
     public List<String> getRulesNamesForClass(String className) {
         String query = "tbox:opra(?v, " + className + ") -> sqwrl:select(?v)";
@@ -197,39 +146,5 @@ public class SWRLReader {
         s = s.substring(0, s.length()-1);
 
         return s;
-    }
-
-    /*public void printRules() {
-        Set<SWRLAPIRule> set = ruleEngine.getSWRLRules();
-
-        for (SWRLAPIRule elem : set) {
-
-            for (SWRLAtom atom : elem.getHead()) {
-
-                System.out.println(atom.getPredicate() + "  ");
-                System.out.println(atom.getAllArguments() + " \n");
-
-
-            }
-
-            for (SWRLAtom atom : elem.getBody()) {
-                System.out.println(atom.getPredicate() + "  ");
-                System.out.println(atom.getAllArguments() + " \n");
-            }
-            System.out.println("--------");
-        }
-    }
-
-*/
-    public List<String> getClasses() {
-        List<String> classes = new ArrayList<String>();
-        Set<OWLClass> owlClasses = ontology.getClassesInSignature();
-
-        for (OWLClass owlClass : owlClasses)
-            if(checkForValues(owlClass)) {
-                classes.add(getValueSubstring(owlClass.toString()));
-            }
-
-        return classes;
     }
 }

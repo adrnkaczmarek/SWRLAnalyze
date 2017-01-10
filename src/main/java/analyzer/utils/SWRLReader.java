@@ -12,9 +12,7 @@ import org.swrlapi.sqwrl.exceptions.SQWRLException;
 import org.swrlapi.sqwrl.values.SQWRLResultValue;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class SWRLReader {
     OWLOntology ontology;
@@ -31,61 +29,52 @@ public class SWRLReader {
         }
     }
 
-    public List<String> getRules() {
-        List<String> rules = new ArrayList<String>();
+    public Map<String, String> getRules() {
+        Map<String, String> rules = new HashMap<String, String>();
 
-        Set<SWRLAPIRule> set = ruleEngine.getSWRLRules();
+        Set<SWRLAPIRule> rulesSet = ruleEngine.getSWRLRules();
 
-        for (SWRLAPIRule rule : set) {
-            String swrlRule = "";
-
+        for (SWRLAPIRule rule : rulesSet) {
+            String rulename = "";
+            String ruleformula = "";
 
             for (SWRLAtom atom : rule.getBody()) {
-                System.out.println(atom.getPredicate());
-                if (checkForValues(atom.getPredicate().toString())) {
-                    //System.out.println(getValueFromPredicate(atom.getPredicate()));
-                    swrlRule += getValueFromPredicate(atom.getPredicate()) + "(";
+                if (checkForValues(atom.getPredicate())) {
+                    ruleformula += getValueFromPredicate(atom.getPredicate()) + "(";
                     String swrlArguments = "";
                     for (SWRLArgument argument : atom.getAllArguments()) {
-                        //System.out.println(getValueFromArgument(argument));
-                        //swrlRule += getValueFromArgument(argument) + " ";
                         swrlArguments += getValueFromArgument(argument);
                     }
                     swrlArguments = insertCommasIntoString(swrlArguments);
-                    swrlRule += swrlArguments + ")";
+                    ruleformula += swrlArguments + ")";
                 }
-
-                swrlRule += " ^ ";
+                ruleformula += " ^ ";
             }
 
-            swrlRule = swrlRule.substring(0, swrlRule.length()-2);
+            ruleformula = ruleformula.substring(0, ruleformula.length()-2);
 
-            swrlRule += " => ";
+            ruleformula += " => ";
 
             String headRule = "";
             for (SWRLAtom atom : rule.getHead()) {
-                //System.out.println(atom.getPredicate());
-                if (checkForValues(atom.getPredicate().toString())) {
-                    //System.out.println(getValueFromPredicate(atom.getPredicate()));
-                    swrlRule += getValueFromPredicate(atom.getPredicate()) + "(";
+                if (checkForValues(atom.getPredicate())) {
+                    rulename = getValueFromPredicate(atom.getPredicate());
+                    ruleformula += rulename + "(";
                     String swrlArguments = "";
                     for (SWRLArgument argument : atom.getAllArguments()) {
-                        //System.out.println(getValueFromArgument(argument));
-                        //swrlRule += getValueFromArgument(argument) + " ";
                         swrlArguments += getValueFromArgument(argument);
                     }
                     swrlArguments = insertCommasIntoString(swrlArguments);
-                    swrlRule += swrlArguments + ")";
+                    ruleformula += swrlArguments + ")";
                 }
             }
-            rules.add(swrlRule);
-            //System.out.println(swrlRule);
-            //System.out.println("--------");
+            rules.put(rulename, ruleformula);
         }
+
         return rules;
     }
 
-    public List<String> getFilteredRules(String className) {
+    /*public List<String> getFilteredRules(String className) {
         List<String> filtered = new ArrayList<String>();
         List<String> rulesNames = getRulesNamesForClass(className);
         //System.out.println(rulesNames);
@@ -123,6 +112,7 @@ public class SWRLReader {
             for (SWRLAtom atom : rule.getHead()) {
                 SWRLPredicate predicate = atom.getPredicate();
                 if (checkForValues(predicate.toString())) {
+                    System.out.println(rulesNames.contains(getValueFromPredicate(predicate)));
                     if (rulesNames.contains(getValueFromPredicate(predicate))) {
                         //System.out.println(getValueFromPredicate(atom.getPredicate()));
                         containsRule = true;
@@ -138,13 +128,14 @@ public class SWRLReader {
 
                     }
                 }
+                //System.out.println(swrlRule);
             }
             if (containsRule)
                 filtered.add(swrlRule);
         }
         return filtered;
     }
-
+    */
 
     public List<String> getRulesNamesForClass(String className) {
         String query = "tbox:opra(?v, " + className + ") -> sqwrl:select(?v)";
@@ -169,7 +160,17 @@ public class SWRLReader {
 
 
 
-    private boolean checkForValues(String s) {
+    private boolean checkForValues(SWRLPredicate predicate) {
+        String s = predicate.toString();
+        String v1 = "#";
+        if (s.contains(v1))
+            return true;
+        else
+            return false;
+    }
+
+    private boolean checkForValues(OWLClass owlClass) {
+        String s = owlClass.toString();
         String v1 = "#";
         if (s.contains(v1))
             return true;
@@ -225,7 +226,7 @@ public class SWRLReader {
         Set<OWLClass> owlClasses = ontology.getClassesInSignature();
 
         for (OWLClass owlClass : owlClasses)
-            if(checkForValues(owlClass.toString())) {
+            if(checkForValues(owlClass)) {
                 classes.add(getValueSubstring(owlClass.toString()));
             }
 

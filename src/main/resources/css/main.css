@@ -13,12 +13,20 @@ ul {
     margin-bottom: 20px;
 }
 
+.filter-list button {
+    margin: 2px;
+}
+
 .dropdown-toggle{
     margin: 10px;
 }
 
 .dropdown-menu li{
     margin: 0;
+}
+
+section.col-sm-3.well {
+    margin-top: 28px;
 }
 
 /* Loader style */

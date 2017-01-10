@@ -2,6 +2,7 @@ package analyzer.utils;
 
 import org.semanticweb.owlapi.apibinding.OWLManager;
 import org.semanticweb.owlapi.model.*;
+import org.semanticweb.owlapi.reasoner.*;
 import org.swrlapi.core.SWRLAPIRule;
 import org.swrlapi.core.SWRLRuleEngine;
 import org.swrlapi.factory.SWRLAPIFactory;
@@ -10,21 +11,33 @@ import org.swrlapi.sqwrl.SQWRLQueryEngine;
 import org.swrlapi.sqwrl.SQWRLResult;
 import org.swrlapi.sqwrl.exceptions.SQWRLException;
 import org.swrlapi.sqwrl.values.SQWRLResultValue;
+import uk.ac.manchester.cs.jfact.JFactFactory;
 
 import java.io.File;
 import java.util.*;
 
-public class SWRLReader {
-    OWLOntology ontology;
-    OWLOntologyManager  manager;
-    SWRLRuleEngine ruleEngine;
+public class SWRLReader
+{
+    private OWLOntology ontology;
+    private OWLOntologyManager manager;
+    private SWRLRuleEngine ruleEngine;
+    private OWLReasonerFactory reasonerFactory;
+    private OWLReasoner reasoner;
 
-    public SWRLReader(String filePath) {
-        try {
+    public SWRLReader(String filePath)
+    {
+        try
+        {
             manager = OWLManager.createOWLOntologyManager();
             ontology = manager.loadOntologyFromOntologyDocument(new File(filePath));
             ruleEngine = SWRLAPIFactory.createSWRLRuleEngine(ontology);
-        } catch (OWLOntologyCreationException e) {
+            reasonerFactory = new JFactFactory();
+            OWLReasonerConfiguration config = new SimpleConfiguration(50000);
+            reasoner = this.reasonerFactory.createReasoner(ontology, config);
+            reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+        }
+        catch (OWLOntologyCreationException e)
+        {
             e.printStackTrace();
         }
     }
@@ -86,25 +99,53 @@ public class SWRLReader {
         return classes;
     }
 
-    public List<String> getRulesNamesForClass(String className) {
-        String query = "tbox:opra(?v, " + className + ") -> sqwrl:select(?v)";
-        List<String> rules = new ArrayList<String>();
+    public List<String> getRulesNamesForClass(String className)
+    {
+        OWLClass filteringClass = null;
+        Set<OWLClass> owlClasses = ontology.getClassesInSignature();
+        List<String> ruleNames = new ArrayList<String>();
 
-        try {
-            SQWRLQueryEngine queryEngine = SWRLAPIFactory.createSQWRLQueryEngine(ontology);
-            SQWRLResult result = queryEngine.runSQWRLQuery("q1", query);
-
-            for (SQWRLResultValue rule : result.getColumn(0)) {
-                rules.add(rule.toString().substring(1));
+        for (OWLClass owlClass : owlClasses)
+        {
+            if(owlClass.getIRI().getShortForm().equals(className))
+            {
+                filteringClass = owlClass;
+                break;
             }
-
-        } catch (SWRLParseException e) {
-            e.printStackTrace();
-        } catch (SQWRLException e) {
-            e.printStackTrace();
         }
 
-        return rules;
+        if(filteringClass != null)
+        {
+            NodeSet<OWLClass> superClassesInNode = reasoner.getSuperClasses(filteringClass, true);
+            Set<OWLClass> classesToAnalyze = new HashSet<>();
+
+            for (OWLClass superClass : superClassesInNode.getFlattened())
+            {
+                if(isGoodClass(superClass))
+                {
+                    classesToAnalyze.add(superClass);
+                }
+            }
+
+            classesToAnalyze.add(filteringClass);
+
+            for(OWLClass owlClass : classesToAnalyze)
+            {
+                Set<OWLClassAxiom> axioms = ontology.getAxioms(owlClass);
+
+                for (OWLClassAxiom axiom : axioms)
+                {
+                    Set<OWLObjectProperty> props = axiom.getObjectPropertiesInSignature();
+
+                    for (OWLObjectProperty prop : props)
+                    {
+                        ruleNames.add(getValueSubstring(prop.toString()));
+                    }
+                }
+            }
+        }
+
+        return ruleNames;
     }
 
     public List<String> getFunctionalObjectProperty() {
@@ -115,6 +156,20 @@ public class SWRLReader {
     public List<String> getSymmetricObjectProperty() {
         String query = "rbox:spa(?v) -> sqwrl:select(?v)";
         return execute(query);
+    }
+
+
+    private boolean isGoodClass(OWLClass owlClass)
+    {
+        boolean toReturn = true;
+        String tmp = owlClass.getIRI().toString();
+
+        if(tmp.contains("Thing") || tmp.contains("Nothing"))
+        {
+            toReturn = false;
+        }
+
+        return toReturn;
     }
 
     private boolean checkForValues(SWRLPredicate predicate) {
@@ -145,7 +200,8 @@ public class SWRLReader {
         return getValueSubstring(tmp);
     }
 
-    private String getValueSubstring(String s) {
+    private String getValueSubstring(String s)
+    {
         return s.substring(s.indexOf("#") + 1, s.indexOf(">"));
     }
 

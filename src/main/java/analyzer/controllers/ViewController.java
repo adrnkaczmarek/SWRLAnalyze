@@ -13,7 +13,7 @@ import java.util.Map;
 @Controller
 public class ViewController
 {
-    private String filePath = "/Users/krzysztof/IdeaProjects/SWRLAnalyzer/src/main/resources/family.xml";
+    private String filePath = "C:\\Users\\adrn.kaczmarek\\IdeaProjects\\SWRLAnalyze\\src\\main\\resources\\family.xml";
     private Map<String, String> rulesMap;
 
 
@@ -33,18 +33,22 @@ public class ViewController
     }
 
     @RequestMapping("/filter")
-    public String filter(Model model,  @RequestParam("filter") String filter) {
+    public String filter(Model model, @RequestParam("filter") String filter)
+    {
         SWRLReader reader = new SWRLReader(filePath);
-
-        String[] rules = {"example"};
+        String[] rules;
 
         if(filter.equals("None"))
         {
             rules = rulesMap.values().toArray(new String[0]);
-        } else {
+        }
+        else
+        {
             List<String> rulesNames = reader.getRulesNamesForClass(filter);
-            List<String> rulesTmp = new ArrayList<String>();
-            for (String rule : rulesNames) {
+            List<String> rulesTmp = new ArrayList<>();
+
+            for (String rule : rulesNames)
+            {
                 rulesTmp.add(rulesMap.get(rule));
             }
             rules = rulesTmp.toArray(new String[0]);
@@ -57,10 +61,10 @@ public class ViewController
     @RequestMapping("/filterFunctional")
     public String filterFunctional(Model model) {
         SWRLReader reader = new SWRLReader(filePath);
-        String[] rules =  {"example"};
+        String[] rules;
 
         List<String> rulesNames = reader.getFunctionalObjectProperty();
-        List<String> rulesTmp = new ArrayList<String>();
+        List<String> rulesTmp = new ArrayList<>();
         for (String rule : rulesNames) {
             if (rulesMap.containsKey(rule))
                 rulesTmp.add(rulesMap.get(rule));
@@ -76,10 +80,10 @@ public class ViewController
     @RequestMapping("/filterSymmetric")
     public String filterSymmetric(Model model) {
         SWRLReader reader = new SWRLReader(filePath);
-        String[] rules =  {"example"};
+        String[] rules;
 
         List<String> rulesNames = reader.getSymmetricObjectProperty();
-        List<String> rulesTmp = new ArrayList<String>();
+        List<String> rulesTmp = new ArrayList<>();
         for (String rule : rulesNames) {
             if (rulesMap.containsKey(rule))
                 rulesTmp.add(rulesMap.get(rule));

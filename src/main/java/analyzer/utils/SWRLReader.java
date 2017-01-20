@@ -16,6 +16,11 @@ import uk.ac.manchester.cs.jfact.JFactFactory;
 import java.io.File;
 import java.util.*;
 
+/**
+ *  opis klasy
+ * @author Adrian Kaczmarek Krzysztof Rózga Radosław Kapłon
+ * @version 1.0
+ */
 public class SWRLReader
 {
     private OWLOntology ontology;
@@ -24,6 +29,10 @@ public class SWRLReader
     private OWLReasonerFactory reasonerFactory;
     private OWLReasoner reasoner;
 
+    /**
+     * konstruktor klasy SWRLReader
+     * @param filePath
+     */
     public SWRLReader(String filePath)
     {
         try
@@ -42,6 +51,10 @@ public class SWRLReader
         }
     }
 
+    /**
+     *
+     * @return
+     */
     public Map<String, String> getRules() {
         Map<String, String> rules = new HashMap<String, String>();
 
@@ -87,6 +100,10 @@ public class SWRLReader
         return rules;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<String> getClasses() {
         List<String> classes = new ArrayList<String>();
         Set<OWLClass> owlClasses = ontology.getClassesInSignature();
@@ -99,6 +116,11 @@ public class SWRLReader
         return classes;
     }
 
+    /**
+     *
+     * @param className
+     * @return
+     */
     public List<String> getRulesNamesForClass(String className)
     {
         OWLClass filteringClass = null;
@@ -148,24 +170,42 @@ public class SWRLReader
         return ruleNames;
     }
 
+    /**
+     *
+     * @return
+     */
     public List<String> getFunctionalObjectProperty()
     {
         String query = "tbox:fopa(?v) -> sqwrl:select(?v)";
         return execute(query);
     }
 
+    /**
+     *
+     * @return
+     */
     public List<String> getSymmetricObjectProperty()
     {
         String query = "rbox:spa(?v) -> sqwrl:select(?v)";
         return execute(query);
     }
 
+    /**
+     *
+     * @param rule
+     * @return
+     */
     public List<String> getSubOfObjectProperty(String rule)
     {
         String query = "rbox:sopa(" + rule + ", ?v) -> sqwrl:select(?v)";
         return execute(query);
     }
 
+    /**
+     *
+     * @param rule
+     * @return
+     */
     public List<String> getInverseObjectProperty(String rule)
     {
         //TODO: zamiana miejscami argumentów
@@ -174,6 +214,11 @@ public class SWRLReader
     }
 
 
+    /**
+     *
+     * @param owlClass
+     * @return
+     */
     private boolean isGoodClass(OWLClass owlClass)
     {
         boolean toReturn = true;
@@ -187,6 +232,11 @@ public class SWRLReader
         return toReturn;
     }
 
+    /**
+     *
+     * @param predicate
+     * @return
+     */
     private boolean checkForValues(SWRLPredicate predicate) {
         String s = predicate.toString();
         String v1 = "#";
@@ -196,6 +246,11 @@ public class SWRLReader
             return false;
     }
 
+    /**
+     *
+     * @param owlClass
+     * @return
+     */
     private boolean checkForValues(OWLClass owlClass) {
         String s = owlClass.toString();
         String v1 = "#";
@@ -205,21 +260,41 @@ public class SWRLReader
             return false;
     }
 
+    /**
+     *
+     * @param predicate
+     * @return
+     */
     private String getValueFromPredicate(SWRLPredicate predicate) {
         String tmp = predicate.toString();
         return getValueSubstring(tmp);
     }
 
+    /**
+     *
+     * @param argument
+     * @return
+     */
     private String getValueFromArgument(SWRLArgument argument) {
         String tmp = argument.toString();
         return getValueSubstring(tmp);
     }
 
+    /**
+     *
+     * @param s
+     * @return
+     */
     private String getValueSubstring(String s)
     {
         return s.substring(s.indexOf("#") + 1, s.indexOf(">"));
     }
 
+    /**
+     *
+     * @param s
+     * @return
+     */
     private String insertCommasIntoString(String s) {
         s = s.replaceAll(".", "$0, ").trim();
         s = s.substring(0, s.length()-1);
@@ -227,6 +302,11 @@ public class SWRLReader
         return s;
     }
 
+    /**
+     *
+     * @param query
+     * @return
+     */
     private List<String> execute(String query) {
         List<String> rules = new ArrayList<String>();
 

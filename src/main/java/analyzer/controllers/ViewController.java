@@ -9,13 +9,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ *  opis klasy
+ * @author Adrian Kaczmarek Krzysztof Rózga Radosław Kapłon
+ * @version 1.0
+ */
 @Controller
 public class ViewController
 {
     private String filePath = "C:\\Users\\adrn.kaczmarek\\IdeaProjects\\SWRLAnalyze\\src\\main\\resources\\family.xml";
     private Map<String, String> rulesMap;
 
-
+    /**
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping("/index")
     public String index(Model model)
     {
@@ -33,6 +42,12 @@ public class ViewController
         return "index";
     }
 
+    /**
+     *
+     * @param model
+     * @param filter
+     * @return
+     */
     @RequestMapping("/filter")
     public String filter(Model model, @RequestParam("filter") String filter)
     {
@@ -52,6 +67,11 @@ public class ViewController
         return "swrl_list";
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping("/filterFunctional")
     public String filterAsFunctionalProperty(Model model)
     {
@@ -61,6 +81,11 @@ public class ViewController
         return "swrl_list";
     }
 
+    /**
+     *
+     * @param model
+     * @return
+     */
     @RequestMapping("/filterSymmetric")
     public String filterAsSymmetricProperty(Model model)
     {
@@ -70,6 +95,12 @@ public class ViewController
         return "swrl_list";
     }
 
+    /**
+     *
+     * @param model
+     * @param rule
+     * @return
+     */
     @RequestMapping("/filterAsSubOfProperty")
     public String filterAsSubOfProperty(Model model, @RequestParam("rule") String rule)
     {
@@ -79,6 +110,12 @@ public class ViewController
         return "swrl_list";
     }
 
+    /**
+     *
+     * @param model
+     * @param rule
+     * @return
+     */
     @RequestMapping("/filterAsInverseProperty")
     public String filterAsInverseProperty(Model model, @RequestParam("rule") String rule)
     {
@@ -88,6 +125,11 @@ public class ViewController
         return "swrl_list";
     }
 
+    /**
+     *
+     * @param rulesNames
+     * @return
+     */
     private String[] getRulesFromMap(List<String> rulesNames)
     {
         List<String> rulesTmp = new ArrayList<>();

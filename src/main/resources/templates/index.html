@@ -70,8 +70,7 @@
             </ul>
             <div class="loader"></div>
         </section>
-
-        <section id="swrl_list" class="col-sm-9" th:include="swrl_list :: list (rules = ${rules})"></section>
+        <section id="swrl_list" class="col-sm-9" th:include="swrl_list :: list (rules = ${rules}, next_level = ${next_level}, current_level = ${current_level})"></section>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>

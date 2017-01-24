@@ -52,6 +52,11 @@ public class SWRLReader
         }
     }
 
+    public SearchRulesSpy getSpy()
+    {
+        return spy;
+    }
+
     /**
      *
      * @return

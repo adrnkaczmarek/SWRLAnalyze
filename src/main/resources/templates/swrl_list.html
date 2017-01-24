@@ -4,13 +4,40 @@
     <meta charset="UTF-8"/>
 </head>
 <body>
-    <div th:fragment="list (rules)">
-        <h1>SWRL Rules</h1>
-        <ul class="list-group">
-            <li class="list-group-item" th:each="rule : ${rules}">
-                <span th:text="${rule}"/>
-            </li>
-        </ul>
+    <div th:fragment="list (rules, next_level, current_level)">
+        <section class="col-sm-6">
+            <h1>SWRL Rules</h1>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="rule : ${rules}">
+                    <span th:text="${rule}"/>
+                </li>
+            </ul>
+        </section>
+
+        <section id="resolution" class="col-sm-6">
+            <h2>Dependent classes</h2>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="map : ${next_level}">
+                    <span th:text="${map.key}"/>
+                    <ul class="list-group">
+                        <li class="list-group-item" th:each="elem : ${map.value}">
+                            <span th:text="${elem}"/>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <h2>Selected class</h2>
+            <ul class="list-group">
+                <li class="list-group-item" th:each="map : ${current_level}">
+                    <span th:text="${map.key}"/>
+                    <ul class="list-group">
+                        <li class="list-group-item" th:each="elem : ${map.value}">
+                            <span th:text="${elem}"/>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
     </div>
 </body>
 </html>

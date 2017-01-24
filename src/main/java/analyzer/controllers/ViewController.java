@@ -63,6 +63,8 @@ public class ViewController
             rules = getRulesFromMap(reader.getRulesNamesForClass(filter));
         }
 
+        model.addAttribute("current_level", reader.getSpy().getClassRuleMap());
+        model.addAttribute("next_level", reader.getSpy().getNextLevel());
         model.addAttribute("rules", rules);
         return "swrl_list";
     }

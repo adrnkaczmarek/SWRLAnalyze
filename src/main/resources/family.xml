@@ -378,19 +378,19 @@
 	<owl:ObjectProperty rdf:about="#hasChild">
 		<rdfs:range rdf:resource="#Person"/>
 		<rdfs:domain rdf:resource="#Person"/>
-		<owl:inverseOf>
-			<owl:ObjectProperty rdf:about="#hasParent"/>
-		</owl:inverseOf>
 	</owl:ObjectProperty>
 	<owl:ObjectProperty rdf:about="#hasParent">
 		<rdfs:domain rdf:resource="#Person"/>
 		<rdfs:range rdf:resource="#Person"/>
-		<owl:inverseOf rdf:resource="#hasChild"/>
+		<owl:inverseOf rdf:resource="#hasSibling"/>
 	</owl:ObjectProperty>
 	<owl:SymmetricProperty rdf:about="#hasSibling">
 		<rdfs:domain rdf:resource="#Person"/>
 		<rdfs:range rdf:resource="#Person"/>
 		<rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+		<owl:inverseOf>
+			<owl:ObjectProperty rdf:about="#hasParent"/>
+		</owl:inverseOf>
 	</owl:SymmetricProperty>
 	<owl:FunctionalProperty rdf:about="#hasSex">
 		<rdfs:domain rdf:resource="#Person"/>

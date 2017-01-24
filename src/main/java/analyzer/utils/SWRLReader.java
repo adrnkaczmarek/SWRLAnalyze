@@ -12,7 +12,6 @@ import org.swrlapi.sqwrl.SQWRLResult;
 import org.swrlapi.sqwrl.exceptions.SQWRLException;
 import org.swrlapi.sqwrl.values.SQWRLResultValue;
 import uk.ac.manchester.cs.jfact.JFactFactory;
-
 import java.io.File;
 import java.util.*;
 
@@ -28,6 +27,7 @@ public class SWRLReader
     private SWRLRuleEngine ruleEngine;
     private OWLReasonerFactory reasonerFactory;
     private OWLReasoner reasoner;
+    private SearchRulesSpy spy;
 
     /**
      * konstruktor klasy SWRLReader
@@ -44,6 +44,7 @@ public class SWRLReader
             OWLReasonerConfiguration config = new SimpleConfiguration(50000);
             reasoner = this.reasonerFactory.createReasoner(ontology, config);
             reasoner.precomputeInferences(InferenceType.CLASS_HIERARCHY);
+            spy = new SearchRulesSpy();
         }
         catch (OWLOntologyCreationException e)
         {
@@ -56,7 +57,7 @@ public class SWRLReader
      * @return
      */
     public Map<String, String> getRules() {
-        Map<String, String> rules = new HashMap<String, String>();
+        Map<String, String> rules = new HashMap<>();
 
         Set<SWRLAPIRule> rulesSet = ruleEngine.getSWRLRules();
 
@@ -81,7 +82,6 @@ public class SWRLReader
 
             ruleformula += " => ";
 
-            String headRule = "";
             for (SWRLAtom atom : rule.getHead()) {
                 if (checkForValues(atom.getPredicate())) {
                     rulename = getValueFromPredicate(atom.getPredicate());
@@ -105,7 +105,7 @@ public class SWRLReader
      * @return
      */
     public List<String> getClasses() {
-        List<String> classes = new ArrayList<String>();
+        List<String> classes = new ArrayList<>();
         Set<OWLClass> owlClasses = ontology.getClassesInSignature();
 
         for (OWLClass owlClass : owlClasses)
@@ -125,7 +125,9 @@ public class SWRLReader
     {
         OWLClass filteringClass = null;
         Set<OWLClass> owlClasses = ontology.getClassesInSignature();
-        List<String> ruleNames = new ArrayList<String>();
+        List<String> ruleNames = new ArrayList<>();
+        Map<String, List<String>> next_level_map = new HashMap<>();
+        Map<String, List<String>> current_level_map = new HashMap<>();
 
         for (OWLClass owlClass : owlClasses)
         {
@@ -154,6 +156,7 @@ public class SWRLReader
             for(OWLClass owlClass : classesToAnalyze)
             {
                 Set<OWLClassAxiom> axioms = ontology.getAxioms(owlClass);
+                List<String> class_rule_names = new ArrayList<>();
 
                 for (OWLClassAxiom axiom : axioms)
                 {
@@ -162,10 +165,23 @@ public class SWRLReader
                     for (OWLObjectProperty prop : props)
                     {
                         ruleNames.add(getValueSubstring(prop.toString()));
+                        class_rule_names.add(getValueSubstring(prop.toString()));
                     }
+                }
+
+                if(owlClass == filteringClass)
+                {
+                    current_level_map.put(owlClass.getIRI().getShortForm(), class_rule_names);
+                }
+                else
+                {
+                    next_level_map.put(owlClass.getIRI().getShortForm(), class_rule_names);
                 }
             }
         }
+
+        spy.setClassRuleMap(current_level_map);
+        spy.setNextLevel(next_level_map);
 
         return ruleNames;
     }
@@ -208,8 +224,13 @@ public class SWRLReader
      */
     public List<String> getInverseObjectProperty(String rule)
     {
-        //TODO: zamiana miejscami argumentów
         String query = "rbox:iopa(?v, " + rule + ") -> sqwrl:select(?v)";
+        return execute(query);
+    }
+
+    public List<String> getInverseProperty(String rule)
+    {
+        String query = "rbox:iopa(" + rule + ", ?v) -> sqwrl:select(?v)";
         return execute(query);
     }
 
@@ -308,7 +329,7 @@ public class SWRLReader
      * @return
      */
     private List<String> execute(String query) {
-        List<String> rules = new ArrayList<String>();
+        List<String> rules = new ArrayList<>();
 
         try {
             SQWRLQueryEngine queryEngine = SWRLAPIFactory.createSQWRLQueryEngine(ontology);

@@ -121,6 +121,11 @@ public class ViewController
     {
         SWRLReader reader = new SWRLReader(filePath);
         String[] rules = getRulesFromMap(reader.getInverseObjectProperty(rule));
+        if (rules.length == 0)
+        {
+            SWRLReader reader_for_inverse = new SWRLReader(filePath);
+            rules = getRulesFromMap(reader_for_inverse.getInverseProperty(rule));
+        }
         model.addAttribute("rules", rules);
         return "swrl_list";
     }

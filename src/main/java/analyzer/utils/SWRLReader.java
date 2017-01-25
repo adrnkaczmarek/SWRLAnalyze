@@ -16,7 +16,7 @@ import java.io.File;
 import java.util.*;
 
 /**
- * Klasa służy do przetwarzania plików RDF w celu analizy i grupowania reguł SWRL.
+ * Klasa służy do przetwarzania plików RDF, zawierających pewną ontologię, w celu analizy i grupowania reguł SWRL.
  * @author Adrian Kaczmarek Krzysztof Rózga Radosław Kapłon
  * @version 1.0
  */
@@ -30,8 +30,8 @@ public class SWRLReader
     private SearchRulesSpy spy;
 
     /**
-     * Konstruktor klasy SWRLReader przyjmuje jako argument ścieżkę do pliku RDF.
-     * @param filePath
+     * Konstruktor klasy SWRLReader, przyjmuje jako argument ścieżkę do pliku RDF.
+     * @param filePath ścieżka do pliku z ontologią.
      */
     public SWRLReader(String filePath)
     {
@@ -52,14 +52,18 @@ public class SWRLReader
         }
     }
 
+    /**
+     * Zwraca obiekt zawierający informacje o wnioskowaniu dotyczącym filtrowania reguł nazwami klas.
+     * @return obiekt przechowujący informacje o sposobie wnioskowania w etapie filtrowania reguł nazwami klas.
+     */
     public SearchRulesSpy getSpy()
     {
         return spy;
     }
 
     /**
-     *
-     * @return
+     * Zwraca mapę (nazwa reguły, ciało) reguł zawartych w pliku rdf.
+     * @return mapa, której kluczem jest nazwa reguły, a wartością ciało reguły.
      */
     public Map<String, String> getRules() {
         Map<String, String> rules = new HashMap<>();
@@ -107,7 +111,7 @@ public class SWRLReader
 
     /**
      * Funkcja zwraca klasy ontologii w postaci listy typu String.
-     * @return
+     * @return lista nazw klas.
      */
     public List<String> getClasses() {
         List<String> classes = new ArrayList<>();
@@ -122,9 +126,9 @@ public class SWRLReader
     }
 
     /**
-     *
-     * @param className
-     * @return
+     * Zwraca nazwy reguł dla zadanej klasy.
+     * @param className nazwa klasy
+     * @return lista nazw reguł.
      */
     public List<String> getRulesNamesForClass(String className)
     {
@@ -193,7 +197,7 @@ public class SWRLReader
 
     /**
      * Funkcja za pomocą zapytań SQWRL zwraca listę funkcyjnych obiektów.
-     * @return
+     * @return lista nazw reguł.
      */
     public List<String> getFunctionalObjectProperty()
     {
@@ -203,7 +207,7 @@ public class SWRLReader
 
     /**
      * Funkcja za pomocą zapytań SQWRL zwraca listę symetrycznych obiektów.
-     * @return
+     * @return lista nazw reguł.
      */
     public List<String> getSymmetricObjectProperty()
     {
@@ -212,9 +216,9 @@ public class SWRLReader
     }
 
     /**
-     * Funkcja za pomocą zapytań SQWRL zwraca listę SubObiektów.
-     * @param rule
-     * @return
+     * Funkcja za pomocą zapytań SQWRL zwraca listę podobiektów dla danej reguły.
+     * @param rule nazwa reguły
+     * @return lista nazw reguł.
      */
     public List<String> getSubOfObjectProperty(String rule)
     {
@@ -224,8 +228,8 @@ public class SWRLReader
 
     /**
      * Funkcja za pomocą zapytań SQWRL zwraca listę odwrotnych obiektów.
-     * @param rule
-     * @return
+     * @return lista obiektów typu String
+     * @return lista nazw reguł.
      */
     public List<String> getInverseObjectProperty(String rule)
     {
@@ -239,12 +243,6 @@ public class SWRLReader
         return execute(query);
     }
 
-
-    /**
-     *
-     * @param owlClass
-     * @return
-     */
     private boolean isGoodClass(OWLClass owlClass)
     {
         boolean toReturn = true;
@@ -260,8 +258,8 @@ public class SWRLReader
 
     /**
      * Funkcja sprawdza czy w predykacie zawarte są wartości.
-     * @param predicate
-     * @return
+     * @param predicate obiekt reprezentujący predykat
+     * @return wartość logiczną true, jeśli w predykacie zawarte są wartości, w przeciwnym wypadku false.
      */
     private boolean checkForValues(SWRLPredicate predicate) {
         String s = predicate.toString();
@@ -274,8 +272,8 @@ public class SWRLReader
 
     /**
      * Funkcja sprawdza czy w klasie OWL zawarte są wartości.
-     * @param owlClass
-     * @return
+     * @param owlClass obiekt reprezentujący klase ontologii OWL
+     * @return wartość logiczną true, jeśli w klasie zawarte są wartości, w przeciwnym wypadku false.
      */
     private boolean checkForValues(OWLClass owlClass) {
         String s = owlClass.toString();
@@ -287,9 +285,9 @@ public class SWRLReader
     }
 
     /**
-     *  Funkcja wyciąga z predykatu wartość.
-     * @param predicate
-     * @return
+     * Funkcja pobierająca wartość z predykatu.
+     * @param predicate obiekt reprezentujący predykat
+     * @return wartość predykatu.
      */
     private String getValueFromPredicate(SWRLPredicate predicate) {
         String tmp = predicate.toString();
@@ -297,9 +295,8 @@ public class SWRLReader
     }
 
     /**
-     *  Funkcja wyciąga z SWRLArgument wartość.
+     * Funkcja wyciąga z SWRLArgument wartość.
      * @param argument
-     * @return
      */
     private String getValueFromArgument(SWRLArgument argument) {
         String tmp = argument.toString();
@@ -309,7 +306,6 @@ public class SWRLReader
     /**
      * Funkcja pomocnicza wyciągająca wartość.
      * @param s
-     * @return
      */
     private String getValueSubstring(String s)
     {
@@ -319,7 +315,6 @@ public class SWRLReader
     /**
      * Funkcja pomocnicza zamieniająca w ciągu znaków kropki na przecinki.
      * @param s
-     * @return
      */
     private String insertCommasIntoString(String s) {
         s = s.replaceAll(".", "$0, ").trim();
@@ -331,7 +326,6 @@ public class SWRLReader
     /**
      * Funkcja służy do wykonywania zapytań na silniku reguł SQWRL (SQWRL Engine) i zwracania wyników tych zapytań.
      * @param query
-     * @return
      */
     private List<String> execute(String query) {
         List<String> rules = new ArrayList<>();

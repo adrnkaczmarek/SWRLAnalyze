@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Klasa jest kontrolerem widoku.
+ * Klasa będąca głównym kontrolerem widoku.
  * @author Adrian Kaczmarek Krzysztof Rózga Radosław Kapłon
  * @version 1.0
  */
@@ -20,6 +20,11 @@ public class ViewController
     private String filePath = "C:\\Users\\adrn.kaczmarek\\IdeaProjects\\SWRLAnalyze\\src\\main\\resources\\family.xml";
     private Map<String, String> rulesMap;
 
+    /**
+     * Funkcja zwracająca główny widok aplikacji, wraz z wszsytkimi regułami.
+     * @param model
+     * @return widok główny z wczytanymi danymi.
+     */
     @RequestMapping("/index")
     public String index(Model model)
     {
@@ -38,10 +43,10 @@ public class ViewController
     }
 
     /**
-     *  Funkcja odpowiada za wykonanie wybranych filtrów i zwrocenie wyników ich zastosowania.
+     * Funkcja odpowiada za wykonanie wybranych filtracji i zwrócenie jej wyników.
      * @param model
-     * @param filter
-     * @return
+     * @param filter reguła będąca argumentem filtracji
+     * @return widok z wczytanymi danymi.
      */
     @RequestMapping("/filter")
     public String filter(Model model, @RequestParam("filter") String filter)
@@ -65,9 +70,9 @@ public class ViewController
     }
 
     /**
-     *  Funkcja odpowiada za filtrowanie obiektów funkcyjnych.
+     *  Funkcja odpowiada za filtrowanie reguł jako obiektów funkcyjnych.
      * @param model
-     * @return
+     * @return widok z wczytanymi danymi.
      */
     @RequestMapping("/filterFunctional")
     public String filterAsFunctionalProperty(Model model)
@@ -79,9 +84,9 @@ public class ViewController
     }
 
     /**
-     * Funkcja odpowiada za filtrowanie symetrycznych obiektów.
+     * Funkcja odpowiada za filtrowanie reguł jako symetrycznych obiektów.
      * @param model
-     * @return
+     * @return widok z wczytanymi danymi.
      */
     @RequestMapping("/filterSymmetric")
     public String filterAsSymmetricProperty(Model model)
@@ -93,10 +98,10 @@ public class ViewController
     }
 
     /**
-     *
+     * Funkcja odpowiada za filtrowanie reguł jako podobiektów.
      * @param model
-     * @param rule
-     * @return
+     * @param rule reguła będąca argumentem filtracji
+     * @return widok z wczytanymi danymi.
      */
     @RequestMapping("/filterAsSubOfProperty")
     public String filterAsSubOfProperty(Model model, @RequestParam("rule") String rule)
@@ -108,10 +113,10 @@ public class ViewController
     }
 
     /**
-     * Funkcja odpowiada za filtrowanie odwrotnych obiektów.
+     * Funkcja odpowiada za filtrowanie reguł jako odwrotnych obiektów.
      * @param model
-     * @param rule
-     * @return
+     * @param rule reguła będąca argumentem filtracji
+     * @return widok z wczytanymi danymi.
      */
     @RequestMapping("/filterAsInverseProperty")
     public String filterAsInverseProperty(Model model, @RequestParam("rule") String rule)
@@ -128,9 +133,9 @@ public class ViewController
     }
 
     /**
-     * Funkcja pomocnicza odpowiadjąca za zwrócenie listy reguł z mapy.
-     * @param rulesNames
-     * @return
+     * Funkcja pomocnicza odpowiadjąca za zwrócenie listy reguł z mapy, na podstawie nazw przekazanych jako argument.
+     * @param rulesNames lista nazw reguł
+     * @return lista reguł.
      */
     private String[] getRulesFromMap(List<String> rulesNames)
     {

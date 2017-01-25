@@ -16,7 +16,7 @@ import java.io.File;
 import java.util.*;
 
 /**
- *  opis klasy
+ * Klasa służy do przetwarzania plików RDF w celu analizy i grupowania reguł SWRL.
  * @author Adrian Kaczmarek Krzysztof Rózga Radosław Kapłon
  * @version 1.0
  */
@@ -30,7 +30,7 @@ public class SWRLReader
     private SearchRulesSpy spy;
 
     /**
-     * konstruktor klasy SWRLReader
+     * Konstruktor klasy SWRLReader przyjmuje jako argument ścieżkę do pliku RDF.
      * @param filePath
      */
     public SWRLReader(String filePath)
@@ -106,7 +106,7 @@ public class SWRLReader
     }
 
     /**
-     *
+     * Funkcja zwraca klasy ontologii w postaci listy typu String.
      * @return
      */
     public List<String> getClasses() {
@@ -192,7 +192,7 @@ public class SWRLReader
     }
 
     /**
-     *
+     * Funkcja za pomocą zapytań SQWRL zwraca listę funkcyjnych obiektów.
      * @return
      */
     public List<String> getFunctionalObjectProperty()
@@ -202,7 +202,7 @@ public class SWRLReader
     }
 
     /**
-     *
+     * Funkcja za pomocą zapytań SQWRL zwraca listę symetrycznych obiektów.
      * @return
      */
     public List<String> getSymmetricObjectProperty()
@@ -212,7 +212,7 @@ public class SWRLReader
     }
 
     /**
-     *
+     * Funkcja za pomocą zapytań SQWRL zwraca listę SubObiektów.
      * @param rule
      * @return
      */
@@ -223,7 +223,7 @@ public class SWRLReader
     }
 
     /**
-     *
+     * Funkcja za pomocą zapytań SQWRL zwraca listę odwrotnych obiektów.
      * @param rule
      * @return
      */
@@ -259,7 +259,7 @@ public class SWRLReader
     }
 
     /**
-     *
+     * Funkcja sprawdza czy w predykacie zawarte są wartości.
      * @param predicate
      * @return
      */
@@ -273,7 +273,7 @@ public class SWRLReader
     }
 
     /**
-     *
+     * Funkcja sprawdza czy w klasie OWL zawarte są wartości.
      * @param owlClass
      * @return
      */
@@ -287,7 +287,7 @@ public class SWRLReader
     }
 
     /**
-     *
+     *  Funkcja wyciąga z predykatu wartość.
      * @param predicate
      * @return
      */
@@ -297,7 +297,7 @@ public class SWRLReader
     }
 
     /**
-     *
+     *  Funkcja wyciąga z SWRLArgument wartość.
      * @param argument
      * @return
      */
@@ -307,7 +307,7 @@ public class SWRLReader
     }
 
     /**
-     *
+     * Funkcja pomocnicza wyciągająca wartość.
      * @param s
      * @return
      */
@@ -317,7 +317,7 @@ public class SWRLReader
     }
 
     /**
-     *
+     * Funkcja pomocnicza zamieniająca w ciągu znaków kropki na przecinki.
      * @param s
      * @return
      */
@@ -329,7 +329,7 @@ public class SWRLReader
     }
 
     /**
-     *
+     * Funkcja służy do wykonywania zapytań na silniku reguł SQWRL (SQWRL Engine) i zwracania wyników tych zapytań.
      * @param query
      * @return
      */

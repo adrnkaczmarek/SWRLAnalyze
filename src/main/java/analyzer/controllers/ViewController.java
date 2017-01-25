@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  opis klasy
+ * Klasa jest kontrolerem widoku.
  * @author Adrian Kaczmarek Krzysztof Rózga Radosław Kapłon
  * @version 1.0
  */
@@ -20,11 +20,6 @@ public class ViewController
     private String filePath = "C:\\Users\\adrn.kaczmarek\\IdeaProjects\\SWRLAnalyze\\src\\main\\resources\\family.xml";
     private Map<String, String> rulesMap;
 
-    /**
-     *
-     * @param model
-     * @return
-     */
     @RequestMapping("/index")
     public String index(Model model)
     {
@@ -43,7 +38,7 @@ public class ViewController
     }
 
     /**
-     *
+     *  Funkcja odpowiada za wykonanie wybranych filtrów i zwrocenie wyników ich zastosowania.
      * @param model
      * @param filter
      * @return
@@ -70,7 +65,7 @@ public class ViewController
     }
 
     /**
-     *
+     *  Funkcja odpowiada za filtrowanie obiektów funkcyjnych.
      * @param model
      * @return
      */
@@ -84,7 +79,7 @@ public class ViewController
     }
 
     /**
-     *
+     * Funkcja odpowiada za filtrowanie symetrycznych obiektów.
      * @param model
      * @return
      */
@@ -113,7 +108,7 @@ public class ViewController
     }
 
     /**
-     *
+     * Funkcja odpowiada za filtrowanie odwrotnych obiektów.
      * @param model
      * @param rule
      * @return
@@ -133,7 +128,7 @@ public class ViewController
     }
 
     /**
-     *
+     * Funkcja pomocnicza odpowiadjąca za zwrócenie listy reguł z mapy.
      * @param rulesNames
      * @return
      */
